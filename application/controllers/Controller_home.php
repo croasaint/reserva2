@@ -8,6 +8,7 @@ class Controller_home extends CI_Controller {
 
 }
 
+
 public function index(){
   $data['services'] = $this->Service_model->showService();
   $this->load->view('layout/layout_home', $data);
