@@ -1,6 +1,6 @@
 <h1>Registrar Usuario</h1>
 <div class="User__Show row">
-<?php echo form_open('Service/InsertUser'); ?>
+<?php echo form_open('Service/insertUser'); ?>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre</label>

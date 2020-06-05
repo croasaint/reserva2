@@ -1,5 +1,5 @@
 
-<?php echo form_open('Service/RecieveData'); ?>
+<?php echo form_open('Service/recieveData'); ?>
 <?php
 $nombre = array(
   'name' => 'service_name',

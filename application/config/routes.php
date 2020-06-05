@@ -51,11 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Controller_home';
 $route['404_override'] = '';
-$route['resource/reservation'] = 'Resource/Show_add_resource';
-$route['service/add'] = 'Service/Show_add_service';
-$route['service/show/(:any)'] = 'Service/Show_service/$1';
-$route['resource/reservation/(:any)'] = 'Resource/Show_add_resource/$1';
-$route['user/registration'] = 'Service/AddUser/$1';
+$route['resource/reservation'] = 'Resource/show_add_resource';
+$route['service/add'] = 'Service/show_add_service';
+$route['service/show/(:any)'] = 'Service/show_service/$1';
+$route['resource/reservation/(:any)'] = 'Resource/show_add_resource/$1';
+$route['user/registration'] = 'Service/addUser/$1';
+$route['user/login'] = 'signin/loginUser';
 $route['resource/getschedules/(:any)'] = 'resource/get_schedules/$1';
 
 $route['translate_uri_dashes'] = FALSE;

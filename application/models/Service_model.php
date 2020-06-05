@@ -5,38 +5,38 @@ class Service_model extends CI_Model{
     $this->load->database();
   }
 
-  function InsertService($data){
+  function insertService($data){
     $this->db->insert('servicio',array(
       'nombre'=>$data['nombre'],
       'descripcion'=>$data['descripcion'])
     );
   }
 
-  function ShowService(){
+  function showService(){
     $query = $this->db->get('servicio');
     if($query->num_rows() > 0) return  $query;
     else return false;
   }
 
-  function GetServiceResourse($id){
+  function getServiceResourse($id){
     $query = $this->db->query('select * from recurso where recurso.id_servicio ='.$id);
     if($query->num_rows() > 0) return  $query->result();
     else return false;
   }
 
-  function GetServiceById($id){
+  function getServiceById($id){
     $query = $this->db->query('select * from servicio where id ='.$id);
     if($query->num_rows() > 0) return  $query->result();
     else return false;
   }
 
-  function GetResource(){
+  function getResource(){
     $query = $this->db->get('recurso');
     if($query->num_rows() > 0) return  $query;
     else return false;
   }
 
-  function InsertResource($data){
+  function insertResource($data){
 
     $this->db->insert('recurso',array(
       'id_servicio' => $data['id_servicio'],
@@ -47,7 +47,7 @@ class Service_model extends CI_Model{
 
   }
 
-  function InsertUser($data){
+  function insertUser($data){
 
     $this->db->insert('usuarios',array(
       'id_servicio' => $data['id_servicio'],

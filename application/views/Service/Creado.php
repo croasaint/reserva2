@@ -1,6 +1,6 @@
 <div class="Service__Show row">
 
-<?php echo form_open('Service/RecieveData_R');
+<?php echo form_open('Service/recieveData_R');
 ?>
 <?php
 $id_servicio = array(

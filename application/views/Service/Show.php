@@ -30,7 +30,7 @@
 </tr></tbody>
 </table>
 <h2 class="col-12">Agregar Recurso</h2>
-<?php echo form_open('Service/RecieveData_R'); ?>
+<?php echo form_open('Service/recieveData_R'); ?>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="nombre">Nombre</label>
