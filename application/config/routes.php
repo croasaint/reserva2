@@ -53,10 +53,11 @@ $route['default_controller'] = 'Controller_home';
 $route['404_override'] = '';
 $route['resource/reservation'] = 'Resource/show_add_resource';
 $route['service/add'] = 'Service/show_add_service';
-$route['service/show/(:any)'] = 'Service/show_service/$1';
-$route['resource/reservation/(:any)'] = 'Resource/show_add_resource/$1';
+$route['service/show/(:num)'] = 'Service/show_service/$1';
+$route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
 $route['user/registration'] = 'Service/addUser/$1';
 $route['user/login'] = 'signin/loginUser';
-$route['resource/getschedules/(:any)'] = 'resource/get_schedules/$1';
+$route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
+$route['resource/addschedule/(:num)']['POST'] = 'resource/add_schedule/$1';
 
 $route['translate_uri_dashes'] = FALSE;

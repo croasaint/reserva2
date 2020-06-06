@@ -8,7 +8,22 @@ class Resource_model extends CI_Model{
 public function getschedulesbyResourceId($id){
     $query = $this->db->query('select * from reserva where fecha_fin >= curdate() and estado = 1 and id_recurso ='.$id);
     if($query->num_rows() > 0) return  $query->result();
-    else return false;
+    else return [];
+
+}
+
+public function add_schedule($data){
+
+  $this->db->insert('reserva',array(
+    'id_usuario' => $data['id_usuario'],
+      'id_recurso' => $data['id_recurso'],
+      'fecha_inicio' => date('Y-m-d',strtotime($data['fecha_inicio'])),
+      'fecha_fin' => date('Y-m-d',strtotime($data['fecha_fin'])),
+      'detalles' => $data['detalles'],
+      'name' => $data['name'],
+      'estado' => true,
+));
+ 
 
 }
 

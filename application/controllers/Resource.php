@@ -9,16 +9,31 @@ class Resource extends CI_Controller {
 }
 
 
-  public function Show_add_resource(){
+  public function show_add_resource($id){
 
+    $data['content'] = $this->load->view("resource/reservation", "",TRUE );
+    $this->load->view("layout/layout_home", $data);
 
-    $data['content'] = $this->load->view('Resource/Reservation', '',TRUE );
-    $this->load->view('layout/layout_home', $data);
-  }
+   }
 
   public function get_schedules($id){
-    //return $this->Resource_model->getschedulesbyResourceId($id);
-    return [];
+    echo json_encode($this->Resource_model->getschedulesbyResourceId($id));
+    
+  }
+
+  public function add_schedule($id){    
+
+    $data = array(
+      'id_usuario' => $this->input->post('id_usuario'),
+      'id_recurso' => $this->input->post('id_recurso'),
+      'fecha_inicio' => $this->input->post('fecha_inicio'),
+      'fecha_fin' => $this->input->post('fecha_fin'),
+      'detalles' => $this->input->post('detalles'),
+      'name' => $this->input->post('name'),      
+    );
+    $this->Resource_model->add_schedule( $data);
+    return true;  
+    
   }
 
 }
