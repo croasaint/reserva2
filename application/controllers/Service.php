@@ -6,24 +6,33 @@ class Service extends CI_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->model('Service_model');
+
+        $this->load->helper('global');
+
+        $this->data['css'][] = 'bootstrap.min';
+
+        $this->data['js'][] = 'jquery.min';
+        $this->data['js'][] = 'popper.min';
+        $this->data['js'][] = 'bootstrap.min';
+        $this->data['js'][] = 'bootstrap-datepicker.min';
 }
 
 
   public function Show_add_service(){
-    $data['services'] = $this->Service_model->showService();
-    $data['content'] = $this->load->view('Service/Create', '',TRUE );
-    $this->load->view('layout/layout_home', $data);
+    $this->data['services'] = $this->Service_model->showService();
+    $this->data['content'] = $this->load->view('Service/Create', '',TRUE );
+    $this->load->view('layout/layout_home', $this->data);
 
 
   }
 
   public function recieveData(){
-      $data = array(
+      $this->data = array(
         'nombre' => $this->input->post('Service_name'),
         'descripcion' => $this->input->post('Service_description'),
 
       );
-      $this->Service_model->insertService($data);
+      $this->Service_model->insertService($this->data);
 
 
   }
@@ -33,15 +42,15 @@ class Service extends CI_Controller {
 
   public function show_service($id){
     $resources = $this->Service_model->getServiceResourse($id);
-    $data['id_service'] = $id;
+    $this->data['id_service'] = $id;
     $service = $this->Service_model->getServiceById($id);
-    $data['services'] = $this->Service_model->showService();
-    $data['service_name'] = $service[0]->nombre;
-    $data['service_description'] = $service[0]->descripcion;
-    $data['recursos'] = $resources;
-    $data['content'] = $this->load->view('Service/Show', $data, TRUE );
+    $this->data['services'] = $this->Service_model->showService();
+    $this->data['service_name'] = $service[0]->nombre;
+    $this->data['service_description'] = $service[0]->descripcion;
+    $this->data['recursos'] = $resources;
+    $this->data['content'] = $this->load->view('Service/Show', $this->data, TRUE );
     $resources = $this->Service_model->getResource();
-    $this->load->view('layout/layout_home', $data);
+    $this->load->view('layout/layout_home', $this->data);
 
 
 
@@ -51,7 +60,7 @@ class Service extends CI_Controller {
 
 
 public function recieveData_R(){
-   $data = array(
+   $this->data = array(
     'id_servicio' => $this->input->post('id_servicio'),
     'nombre' => $this->input->post('nombre'),
     'descripcion' => $this->input->post('descripcion'),
@@ -59,19 +68,19 @@ public function recieveData_R(){
 
   );
 
-  $this->Service_model->insertResource($data);
+  $this->Service_model->insertResource($this->data);
   redirect('service/show');
 
   }
 
   public function addUser(){
-    $data['services'] = $this->Service_model->showService();
-    $data['content'] = $this->load->view('user/registration', $data, TRUE );
-    $this->load->view('layout/layout_home', $data);
+    $this->data['services'] = $this->Service_model->showService();
+    $this->data['content'] = $this->load->view('user/registration', $this->data, TRUE );
+    $this->load->view('layout/layout_home', $this->data);
   }
 
   public function insertUser(){
-    $data = array(
+    $this->data = array(
      'id_servicio' => $this->input->post('id_servicio'),
      'nombre' => $this->input->post('nombre'),
      'apellido' => $this->input->post('apellido'),
@@ -81,7 +90,7 @@ public function recieveData_R(){
 
    );
 
-   $this->Service_model->insertUser($data);
+   $this->Service_model->insertUser($this->data);
    redirect('service/show');
 
   }

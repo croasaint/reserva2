@@ -51,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Controller_home';
 $route['404_override'] = '';
-$route['resource/reservation'] = 'Resource/show_add_resource';
 $route['service/add'] = 'Service/show_add_service';
 $route['service/show/(:num)'] = 'Service/show_service/$1';
 $route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
