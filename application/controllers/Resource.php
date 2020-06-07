@@ -6,16 +6,18 @@ class Resource extends CI_Controller {
         parent::__construct();
         
         $this->load->model('Resource_model');
+        $this->load->model('Service_model');
         $this->load->helper('form');
         $this->load->helper('global');
 
         $this->data['css'][] = 'bootstrap.min';
-        
+        $this->data['css'][] = 'base';
         
         $this->data['js'][] = 'jquery.min';
         $this->data['js'][] = 'popper.min';
         $this->data['js'][] = 'bootstrap.min';
         $this->data['js'][] = 'bootstrap-datepicker.min';
+        $this->data['js'][] = 'moment.min';
 }
 
 
@@ -25,8 +27,9 @@ class Resource extends CI_Controller {
 
     $this->data['js'][] = 'js-year-calendar.min';
     $this->data['js'][] = 'calendar';
-    
-    $this->data['content'] = $this->load->view("resource/reservation", "",TRUE );
+    $this->data['id_resource']=$id;
+    $this->data['services'] = $this->Service_model->showService();
+    $this->data['content'] = $this->load->view("resource/reservation",  $this->data ,TRUE );
     $this->load->view("layout/layout_home", $this->data);
 
    }
@@ -36,9 +39,9 @@ class Resource extends CI_Controller {
     
   }
 
-  public function add_schedule($id){    
+  public function add_schedule(){    
 
-    $this->data = array(
+    $data = array(
       'id_usuario' => $this->input->post('id_usuario'),
       'id_recurso' => $this->input->post('id_recurso'),
       'fecha_inicio' => $this->input->post('fecha_inicio'),
@@ -46,7 +49,7 @@ class Resource extends CI_Controller {
       'detalles' => $this->input->post('detalles'),
       'name' => $this->input->post('name'),      
     );
-    $this->Resource_model->add_schedule( $this->data);
+    $this->Resource_model->add_schedule($data);
     return true;  
     
   }

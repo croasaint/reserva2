@@ -57,6 +57,6 @@ $route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
 $route['user/registration'] = 'Service/addUser/$1';
 $route['user/login'] = 'signin/loginUser';
 $route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
-$route['resource/addschedule/(:num)']['POST'] = 'resource/add_schedule/$1';
+$route['resource/addschedule']['POST'] = 'resource/add_schedule';
 
 $route['translate_uri_dashes'] = FALSE;

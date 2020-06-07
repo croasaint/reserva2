@@ -8,7 +8,7 @@ function get_cached_filename($file_name){
     if(substr($file_name, 0, 1) == '/'){
         $file_name = substr($file_name, 1);
     }
-    $root_path = '/reservas/';
+    $root_path = base_url();
     $last_mod = filemtime($file_name);
     if($last_mod){
         $path_parts = pathinfo($file_name);

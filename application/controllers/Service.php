@@ -10,11 +10,13 @@ class Service extends CI_Controller {
         $this->load->helper('global');
 
         $this->data['css'][] = 'bootstrap.min';
-
+        $this->data['css'][] = 'base';
+        
         $this->data['js'][] = 'jquery.min';
         $this->data['js'][] = 'popper.min';
         $this->data['js'][] = 'bootstrap.min';
         $this->data['js'][] = 'bootstrap-datepicker.min';
+        $this->data['js'][] = 'moment.min';
 }
 
 
@@ -36,9 +38,6 @@ class Service extends CI_Controller {
 
 
   }
-
-
-
 
   public function show_service($id){
     $resources = $this->Service_model->getServiceResourse($id);
