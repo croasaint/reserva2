@@ -60,7 +60,7 @@ function saveEvent() {
 		error: function() {
 			alert("Ha ocurrido un error en la reserva!");
 		},
-		success: async function(data) {
+		success: async function() {
 			var dataSource = await calendar.getDataSource()();
 			if (event.id) {
 				for (var i in dataSource) {

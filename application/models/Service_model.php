@@ -55,7 +55,8 @@ class Service_model extends CI_Model{
       'apellido'=>$data['apellido'],
       'username'=>$data['username'],
       'email'=>$data['email'],
-      'password'=>$data['password']
+      'password'=>$data['password'],
+      'rol'=>'member'
   ));
 
 }

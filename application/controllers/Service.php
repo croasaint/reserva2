@@ -83,14 +83,14 @@ public function recieveData_R(){
      'id_servicio' => $this->input->post('id_servicio'),
      'nombre' => $this->input->post('nombre'),
      'apellido' => $this->input->post('apellido'),
-     'username' => $this->input->post('login'),
+     'username' => $this->input->post('username'),
      'email' => $this->input->post('correo'),
      'password' => $this->input->post('password')
 
    );
 
    $this->Service_model->insertUser($this->data);
-   redirect('service/show');
+   redirect('user/registration');
 
   }
 }

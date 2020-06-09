@@ -12,8 +12,8 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="login">Login</label>
-    <input type="text" class="form-control" id="login"  name='login'>
+    <label for="login">Nombre de usuario</label>
+    <input type="text" class="form-control" id="username"  name='username'>
   </div>
 
   <div class="form-group">
