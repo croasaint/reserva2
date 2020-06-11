@@ -1,6 +1,6 @@
 <h1>Formulario Recurso</h1>
 
-<?php echo form_open('/reserva/recibirdatosrecurso'); ?>
+<?php echo form_open('/reservation/recibirdatosrecurso'); ?>
 <?php
 $nombre = array(
   'name' => 'nombre',

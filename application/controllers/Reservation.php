@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Reserva extends CI_Controller {
+class Reservation extends CI_Controller {
     function __construct(){
         parent::__construct();
 
@@ -19,7 +19,7 @@ class Reserva extends CI_Controller {
         else{
             $data['usuarios'] = $this->registro_modelo->obtenerusuario($data['segmento']);
         }
-        $this->load->view('reserva/usuarios', $data);
+        $this->load->view('reservation/usuarios', $data);
 
     }
 
@@ -37,9 +37,9 @@ class Reserva extends CI_Controller {
         $this->registro_modelo->insertarNombre($data);
         $this->load->library('menu',array('Inicio','Contacto','Carrito'));
         $data['mi_menu'] = $this->menu->elMenu();
-        $this->load->view('reserva/principal', $data);
+        $this->load->view('reservation/principal', $data);
         $data['usuarios'] = $this->registro_modelo->obtener();
-        $this->load->view('reserva/usuarios', $data);
+        $this->load->view('reservation/usuarios', $data);
     }
 
     function recibirdatosrecurso(){
@@ -52,7 +52,7 @@ class Reserva extends CI_Controller {
         $this->registro_modelo->insertarRecurso($data);
         $this->load->library('menu',array('Inicio','Contacto','Carrito'));
         $data['mi_menu'] = $this->menu->elMenu();
-        $this->load->view('reserva/principal', $data);
+        $this->load->view('reservation/principal', $data);
     }
 
     function actualizarusuarios($id){
@@ -67,7 +67,7 @@ class Reserva extends CI_Controller {
 
       $this->load->library('menu',array('Inicio','Contacto','Carrito'));
       $data['mi_menu'] = $this->menu->elMenu();
-      $this->load->view('reserva/principal', $data);
+      $this->load->view('reservation/principal', $data);
 
       
 

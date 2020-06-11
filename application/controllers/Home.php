@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Controller_home extends CI_Controller {
+class Home extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('Service_model');
@@ -21,7 +21,7 @@ class Controller_home extends CI_Controller {
 
   public function index(){
    
-    $this->data['services'] = $this->Service_model->showService();
+    $this->data['services'] = $this->Service_model->get_services();
     $this->load->view('layout/layout_home', $this->data);
 
   }

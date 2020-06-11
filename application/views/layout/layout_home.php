@@ -11,7 +11,7 @@
 			<link href="<?php echo get_cached_filename('/assets/css/' . $file . '.css'); ?>" rel="stylesheet" />
 	  <?php endforeach; endif; ?>
 
-    <title>Hello, world!</title>
+    <title>Sistema Cabildo</title>
 
     <style media="screen">
       .dropdown-menu.show{
@@ -32,7 +32,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Calendario <span class="sr-only">(current)</span></a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" href="<?=base_url('servicios/')?>">Servicios</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Servicios
@@ -41,9 +43,9 @@
           <?php
            if(isset($services)){
 
-          foreach ($services->result() as $service){
+          foreach ($services as $service){
             ?>
-            <a class='dropdown-item' href="<?=base_url('service/show/'.$service->id)?>">
+            <a class='dropdown-item' href="<?=base_url('servicio/'.$service->id.'/recursos')?>">
 
 
               <?=$service->nombre?>

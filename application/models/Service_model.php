@@ -12,10 +12,18 @@ class Service_model extends CI_Model{
     );
   }
 
-  function showService(){
+  function get_services(){
     $query = $this->db->get('servicio');
-    if($query->num_rows() > 0) return  $query;
+    if($query->num_rows() > 0) return  $query->result();
     else return false;
+  }
+
+  function update_service($data,$id){
+    $this->db->update('servicio', $data, "id = ".$id);
+  }
+
+  function store_service($data){
+    $this->db->insert('servicio', $data);
   }
 
   function getServiceResourse($id){
@@ -24,7 +32,7 @@ class Service_model extends CI_Model{
     else return false;
   }
 
-  function getServiceById($id){
+  function get_service($id){
     $query = $this->db->query('select * from servicio where id ='.$id);
     if($query->num_rows() > 0) return  $query->result();
     else return false;

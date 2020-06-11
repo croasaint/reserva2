@@ -28,7 +28,7 @@ class Resource extends CI_Controller {
     $this->data['js'][] = 'js-year-calendar.min';
     $this->data['js'][] = 'calendar';
     $this->data['id_resource']=$id;
-    $this->data['services'] = $this->Service_model->showService();
+    $this->data['services'] = $this->Service_model->get_services();
     $this->data['content'] = $this->load->view("resource/reservation",  $this->data ,TRUE );
     $this->load->view("layout/layout_home", $this->data);
 
