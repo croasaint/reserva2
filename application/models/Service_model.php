@@ -26,6 +26,11 @@ class Service_model extends CI_Model{
     $this->db->insert('servicio', $data);
   }
 
+  function destroy_service($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('servicio');
+  }
+
   function getServiceResourse($id){
     $query = $this->db->query('select * from recurso where recurso.id_servicio ='.$id);
     if($query->num_rows() > 0) return  $query->result();
@@ -42,17 +47,6 @@ class Service_model extends CI_Model{
     $query = $this->db->get('recurso');
     if($query->num_rows() > 0) return  $query;
     else return false;
-  }
-
-  function insertResource($data){
-
-    $this->db->insert('recurso',array(
-      'id_servicio' => $data['id_servicio'],
-      'nombre'=>$data['nombre'],
-      'descripcion'=>$data['descripcion'],
-      'localizacion'=>$data['localizacion']
-  ));
-
   }
 
   function insertUser($data){

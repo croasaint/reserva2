@@ -51,16 +51,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Home';
 $route['404_override'] = '';
+
 $route['servicios'] = 'service';
 $route['servicio/editar/(:num)'] = 'service/edit/$1';
-
-$route['service/update']['POST'] = 'service/update';
-$route['service/store']['POST'] = 'service/store';
 $route['servicio/(:num)/recursos'] = 'service/show/$1';
+$route['service/(:num)']['post'] = 'service/update/$1';
+$route['service']['post'] = 'service/store';
+$route['service/(:num)']['delete'] = 'service/destroy/$1';
+
+$route['servicio/(:num)/recurso/editar/(:num)'] = 'resource/edit/$1/$2';
+$route['resource/(:num)']['post'] = 'resource/update/$1';
+$route['resource']['post'] = 'resource/store';
+$route['resource/(:num)']['delete'] = 'resource/destroy/$1';
+
 $route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
 $route['user/registration'] = 'service/addUser';
 $route['user/login'] = 'signin/loginUser';
 $route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
-$route['resource/addschedule']['POST'] = 'resource/add_schedule';
+$route['resource/addschedule']['post'] = 'resource/add_schedule';
 
 $route['translate_uri_dashes'] = FALSE;

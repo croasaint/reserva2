@@ -20,21 +20,23 @@ class Service extends CI_Controller {
   }
 
   public function index(){
+    $this->data['js'][] = 'service';
     $this->data['services'] = $this->Service_model->get_services();
-    $this->data['content'] = $this->load->view('Service/index', $this->data,TRUE );
+    $this->data['content'] = $this->load->view('service/index', $this->data,TRUE );
     $this->load->view('layout/layout_home', $this->data);
   }
 
   public function show($id){
+    $this->data['js'][] = 'resource';
     $resources = $this->Service_model->getServiceResourse($id);
     $this->data['id_service'] = $id;
     $service = $this->Service_model->get_service($id);
     $this->data['services'] = $this->Service_model->get_services();
     $this->data['service_name'] = $service[0]->nombre;
     $this->data['service_description'] = $service[0]->descripcion;
-    $this->data['recursos'] = $resources;
+    $this->data['resources'] = $resources;
     
-    $this->data['content'] = $this->load->view('Service/show', $this->data, TRUE );
+    $this->data['content'] = $this->load->view('service/show', $this->data, TRUE );
     $resources = $this->Service_model->getResource();
     $this->load->view('layout/layout_home', $this->data);
   }
@@ -43,12 +45,11 @@ class Service extends CI_Controller {
     $this->data['services'] = $this->Service_model->get_services();
     $this->data['service'] = $this->Service_model->get_service($id)[0];
     
-    $this->data['content'] = $this->load->view('Service/edit', $this->data,TRUE );
+    $this->data['content'] = $this->load->view('service/edit', $this->data,TRUE );
     $this->load->view('layout/layout_home', $this->data);
   }
 
-  public function update(){
-      $id=$this->input->post('id');
+  public function update($id){
       $this->data = array(
         'nombre' => $this->input->post('name'),
         'descripcion' => $this->input->post('description'),
@@ -67,20 +68,8 @@ class Service extends CI_Controller {
     redirect('service');
   }
 
-
-
-public function recieveData_R(){
-   $this->data = array(
-    'id_servicio' => $this->input->post('id_servicio'),
-    'nombre' => $this->input->post('nombre'),
-    'descripcion' => $this->input->post('descripcion'),
-    'localizacion' => $this->input->post('localizacion')
-
-  );
-
-  $this->Service_model->insertResource($this->data);
-  redirect('service/show');
-
+  public function destroy($id){
+    print_r(json_encode($this->Service_model->destroy_service($id))); 
   }
 
   public function addUser(){
