@@ -52,7 +52,7 @@
 				<td><?=$resource->descripcion?></td>
         <td><?= $resource->localizacion ?></td>
 				<td> 
-					<a href="<?=base_url('resource/reservation/'.$resource->id)?>" class="btn btn-info" >Reservar</a>
+					<a href="<?=base_url('/servicio/recurso/reservacion/'.$resource->id)?>" class="btn btn-info" >Reservar</a>
 					<a href="<?=base_url('servicio/'.$id_service.'/recurso/editar/'.$resource->id)?>" class="btn btn-warning" >Editar</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#resourceModal<?=$resource->id?>" >Borrar</button>
 					<!-- Modal -->

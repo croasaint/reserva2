@@ -2,77 +2,68 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reservation extends CI_Controller {
-    function __construct(){
-        parent::__construct();
+  function __construct(){
+    parent::__construct();
+        
+    $this->load->model('Resource_model');
+    $this->load->model('Service_model');
+    $this->load->model('Reservation_model');
+    $this->load->helper('form');
+    $this->load->helper('global');
 
-        $this->load->helper('form');
-        $this->load->model('registro_modelo');
+    $this->data['css'][] = 'bootstrap.min';
+    $this->data['css'][] = 'base';
+        
+    $this->data['js'][] = 'jquery.min';
+    $this->data['js'][] = 'popper.min';
+    $this->data['js'][] = 'bootstrap.min';
+    $this->data['js'][] = 'bootstrap-datepicker.min';
+    $this->data['js'][] = 'moment.min';
+  }
 
-    }
-    function index(){
-        $data['segmento'] = $this->uri->segment(3);
-        $this->load->library('menu',array('Inicio','Contacto','Carrito'));
-        $data['mi_menu'] = $this->menu->elMenu();
-        if(!$data['segmento']){
-          $data['usuarios'] = $this->registro_modelo->obtener();
-        }
-        else{
-            $data['usuarios'] = $this->registro_modelo->obtenerusuario($data['segmento']);
-        }
-        $this->load->view('reservation/usuarios', $data);
+  public function index_rewrite($id){
+    $this->data['css'][] = 'bootstrap-datepicker.standalone.min';
+    $this->data['css'][] = 'js-year-calendar.min';
+  
+    $this->data['js'][] = 'js-year-calendar.min';
+    $this->data['js'][] = 'calendar';
+    $this->data['id_resource']=$id;
+    $this->data['services'] = $this->Service_model->get_services();
+    $this->data['content'] = $this->load->view("reservation/index",  $this->data ,TRUE );
+    $this->load->view("layout/layout_home", $this->data);
+  }
 
-    }
+  public function store(){    
 
+    $data = array(
+      'id_usuario' => $this->input->post('id_usuario'),
+      'id_recurso' => $this->input->post('id_recurso'),
+      'fecha_inicio' => $this->input->post('fecha_inicio'),
+      'fecha_fin' => $this->input->post('fecha_fin'),
+      'detalles' => $this->input->post('detalles'),
+      'name' => $this->input->post('name'),      
+    );
+    return $this->Reservation_model->store_reservation($data);
+    
+  }
 
+  public function update($id){
+    $data = array(
+      'id_usuario' => $this->input->post('id_usuario'),
+      'id_recurso' => $this->input->post('id_recurso'),
+      'fecha_inicio' => $this->input->post('fecha_inicio'),
+      'fecha_fin' => $this->input->post('fecha_fin'),
+      'detalles' => $this->input->post('detalles'),
+      'name' => $this->input->post('name'),      
+    );
+    $this->Reservation_model->update_reservation($data,$id);
+    return true;  
+  }
 
-    function recibirdatos(){
-        $data = array(
-          'nombre' => $this->input->post('nombre'),
-          'apellido' => $this->input->post('apellido'),
-          'username' => $this->input->post('username'),
-          'password' => $this->input->post('password'),
-          'email' => $this->input->post('email'),
-          'rol' => $this->input->post('rol')
-        );
-        $this->registro_modelo->insertarNombre($data);
-        $this->load->library('menu',array('Inicio','Contacto','Carrito'));
-        $data['mi_menu'] = $this->menu->elMenu();
-        $this->load->view('reservation/principal', $data);
-        $data['usuarios'] = $this->registro_modelo->obtener();
-        $this->load->view('reservation/usuarios', $data);
-    }
-
-    function recibirdatosrecurso(){
-        $data = array(
-          'nombre' => $this->input->post('nombre'),
-          'descripcion' => $this->input->post('descripcion'),
-          'localizacion' => $this->input->post('localizacion')
-
-        );
-        $this->registro_modelo->insertarRecurso($data);
-        $this->load->library('menu',array('Inicio','Contacto','Carrito'));
-        $data['mi_menu'] = $this->menu->elMenu();
-        $this->load->view('reservation/principal', $data);
-    }
-
-    function actualizarusuarios($id){
-      $data = array(
-        'nombre' => $this->input->post('nombre'),
-        'apellido' => $this->input->post('apellido'),
-        'username' => $this->input->post('username'),
-        'password' => $this->input->post('password'),
-        'email' => $this->input->post('email'),
-        'rol' => $this->input->post('rol')
-      );
-
-      $this->load->library('menu',array('Inicio','Contacto','Carrito'));
-      $data['mi_menu'] = $this->menu->elMenu();
-      $this->load->view('reservation/principal', $data);
-
-      
-
-
-    }
+  public function get_reservations_by_resource_id($id){
+    echo json_encode($this->Reservation_model->get_reservations_by_resource_id($id));
+    
+  }
 }
 
 ?>

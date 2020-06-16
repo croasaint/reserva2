@@ -64,10 +64,13 @@ $route['resource/(:num)']['post'] = 'resource/update/$1';
 $route['resource']['post'] = 'resource/store';
 $route['resource/(:num)']['delete'] = 'resource/destroy/$1';
 
-$route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
+$route['servicio/recurso/reservacion/(:num)'] = 'reservation/index_rewrite/$1';
+$route['reservation/(:num)']['post'] = 'reservation/update/$1';
+$route['reservation']['post'] = 'reservation/store';
+$route['reservation/get_reservations_by_resource_id/(:num)'] = 'reservation/get_reservations_by_resource_id/$1';
+
 $route['user/registration'] = 'service/addUser';
 $route['user/login'] = 'signin/loginUser';
 $route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
-$route['resource/addschedule']['post'] = 'resource/add_schedule';
 
 $route['translate_uri_dashes'] = FALSE;

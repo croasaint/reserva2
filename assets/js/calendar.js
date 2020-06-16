@@ -8,10 +8,15 @@ function editEvent(event) {
 		"update",
 		event ? event.startDate : ""
 	);
+	$('#event-modal input[name="event-end-date"]').datepicker({
+		startDate: event ? event.endDate : ""
+	});
 	$('#event-modal input[name="event-end-date"]').datepicker(
 		"update",
 		event ? event.endDate : ""
 	);
+	$('#event-modal input[name="event-end-date"]').datepicker("update");
+
 	$('#event-modal input[name="event-name"]+.error').addClass("hidden");
 	$('#event-modal input[name="event-detail"]+.error').addClass("hidden");
 	$("#event-modal").modal();
@@ -52,9 +57,13 @@ function saveEvent() {
 		detalles: event.detail,
 		name: event.name
 	};
+	var url = "http://localhost/reservas/reservation/";
+	if (event.id) {
+		url = "http://localhost/reservas/reservation/" + event.id;
+	}
 
 	$.ajax({
-		url: "http://localhost/reservas/resource/addschedule/",
+		url: url,
 		type: "POST",
 		data: payload,
 		error: function() {
@@ -62,37 +71,16 @@ function saveEvent() {
 		},
 		success: async function() {
 			var dataSource = await calendar.getDataSource()();
-			if (event.id) {
-				for (var i in dataSource) {
-					if (dataSource[i].id == event.id) {
-						dataSource[i].name = event.name;
-						dataSource[i].detail = event.detail;
-						dataSource[i].startDate = event.startDate;
-						dataSource[i].endDate = event.endDate;
-					}
-				}
-			} else {
-				var newId = 0;
-				for (var i in dataSource) {
-					if (dataSource[i].id > newId) {
-						newId = dataSource[i].id;
-					}
-				}
-
-				newId++;
-				event.id = newId;
-
-				dataSource.push(event);
-			}
-
 			calendar.setDataSource(dataSource);
 			$("#event-modal").modal("hide");
+			window.location.reload();
 		}
 	});
 }
 
 $(function() {
 	var currentDate = new Date();
+
 	calendar = new Calendar("#calendar", {
 		enableContextMenu: true,
 		enableRangeSelection: true,
@@ -115,6 +103,7 @@ $(function() {
 			};
 			if (e.events[0]) {
 				data = {
+					id: e.events[0].id,
 					startDate: e.events[0].startDate,
 					endDate: e.events[0].endDate,
 					detail: e.events[0].detail,
@@ -155,15 +144,16 @@ $(function() {
 			$(e.element).popover("hide");
 		},
 
-		dataSource: function() {
+		dataSource: async function() {
 			// Load data from GitHub API
 			return fetch(
-				`http://localhost/reservas/resource/getschedules/${idRecurso}`
+				`http://localhost/reservas/reservation/get_reservations_by_resource_id/${idRecurso}`
 			)
 				.then(result => result.json())
 				.then(results => {
 					if (results) {
 						return results.map(r => ({
+							id: parseInt(r.id),
 							startDate: new Date(r.fecha_inicio),
 							endDate: new Date(r.fecha_fin),
 							name: r.name,
@@ -178,5 +168,9 @@ $(function() {
 	calendar.setMinDate(currentDate);
 	$("#save-event").click(function() {
 		saveEvent();
+	});
+
+	$("#delete-event").click(function(e) {
+		deleteEvent(e);
 	});
 });

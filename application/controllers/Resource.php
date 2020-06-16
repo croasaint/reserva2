@@ -50,43 +50,10 @@ class Resource extends CI_Controller {
     $this->Resource_model->update_resource($this->data,$id_resource);
     redirect('servicio/'.$id_service.'/recursos');
 
-}
-
-public function destroy($id){
-  print_r(json_encode($this->Resource_model->destroy_resource($id))); 
-}
-
-  public function show_add_resource($id){
-    $this->data['css'][] = 'bootstrap-datepicker.standalone.min';
-    $this->data['css'][] = 'js-year-calendar.min';
-
-    $this->data['js'][] = 'js-year-calendar.min';
-    $this->data['js'][] = 'calendar';
-    $this->data['id_resource']=$id;
-    $this->data['services'] = $this->Service_model->get_services();
-    $this->data['content'] = $this->load->view("resource/reservation",  $this->data ,TRUE );
-    $this->load->view("layout/layout_home", $this->data);
-
-   }
-
-  public function get_schedules($id){
-    echo json_encode($this->Resource_model->getschedulesbyResourceId($id));
-    
   }
 
-  public function add_schedule(){    
-
-    $data = array(
-      'id_usuario' => $this->input->post('id_usuario'),
-      'id_recurso' => $this->input->post('id_recurso'),
-      'fecha_inicio' => $this->input->post('fecha_inicio'),
-      'fecha_fin' => $this->input->post('fecha_fin'),
-      'detalles' => $this->input->post('detalles'),
-      'name' => $this->input->post('name'),      
-    );
-    $this->Resource_model->add_schedule($data);
-    return true;  
-    
+  public function destroy($id){
+    print_r(json_encode($this->Resource_model->destroy_resource($id))); 
   }
 
 }

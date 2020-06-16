@@ -62,12 +62,14 @@
                       name="event-start-date"
                       type="text"
                       class="form-control"
+                      disabled
                       required
                     />
                     <div class="input-group-prepend input-group-append">
                       <div class="input-group-text">hasta</div>
                     </div>
                     <input
+                      id="event-end-date"
                       name="event-end-date"
                       type="text"
                       class="form-control"
