@@ -26,7 +26,9 @@
     <input type="email" class="form-control" id="correo"  name='correo'>
   </div>
 
-
+<div class="form-group">
+  <input type="hidden" name="rol" value="2">
+</div>
 <div class="form-group col-md-12">
   <p>Seleccione un servicio</p>
   <select name="id_servicio" id="id_servicio" class="form-group col-md-8" >

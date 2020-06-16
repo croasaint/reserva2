@@ -55,8 +55,10 @@ $route['service/add'] = 'Service/show_add_service';
 $route['service/show/(:num)'] = 'Service/show_service/$1';
 $route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
 $route['user/registration'] = 'Service/addUser';
-$route['user/login'] = 'signin/loginUser';
+$route['user/login'] = 'Signin/loginUser';
+$route['user/destroy'] = 'Signin/logout';
 $route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
 $route['resource/addschedule']['POST'] = 'resource/add_schedule';
+$route['resource/deleteschedule']['DELETE'] = 'resource/delete_schedule';
 
 $route['translate_uri_dashes'] = FALSE;

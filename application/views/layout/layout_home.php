@@ -28,48 +28,122 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Calendario <span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav flex-row w-100 ">
+      <li class="nav-item active ">
+        <a class="nav-link" href="<?= base_url(''); ?>">Principal <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Servicios
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <?php
-           if(isset($services)){
-
-          foreach ($services->result() as $service){
-            ?>
-            <a class='dropdown-item' href="<?=base_url('service/show/'.$service->id)?>">
+<?php if($this->session->userdata('rol') == '1'):?>
 
 
-              <?=$service->nombre?>
-            </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Servicios
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <?php
 
-          <?php } }else {
-            echo "Error en la aplicacion";
-          } ?>
-          <a class="dropdown-item" href="<?= "service/add "?>">Añadir Servicio</a>
-        </div>
+
+             if(isset($services)){
+
+            foreach ($services->result() as $service){
+              ?>
+              <a class='dropdown-item' href="<?=base_url('service/show/'.$service->id)?>">
+
+
+                <?=$service->nombre?>
+              </a>
+
+            <?php } }else {
+              echo "Error en la aplicacion";
+            } ?>
+            <a class="dropdown-item" href="<?= base_url("service/add ");?>">Añadir Servicio</a>
+          </div>
+        </li>
+        <li class="nav-item ml-auto">
+          <a class="nav-link"><?php echo $this->session->userdata('username'); ?></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="<?= base_url('user/destroy');?>">Cerrar Sesión</a>
+        </li>
+<?php elseif ($this->session->userdata('rol') == '2'):?>
+
+  <li class="nav-item">
+    <?php  if(isset($userService)){
+
+      foreach ($userService->result() as $usersr){
+    ?>
+    <a class="nav-link " href="<?=base_url('service/show/'.$usersr->id_servicio)?>"><?= $usersr->nombre ?></a>
+  </li>
+<?php
+}}
+else{ echo 'error';}
+  ?>
+  <li class="nav-item ml-auto">
+    <a class="nav-link"><?php echo $this->session->userdata('username'); ?></a>
+  </li>
+
+
+  <li class="nav-item ">
+    <a class="nav-link" href="<?= base_url('user/destroy');?>">Cerrar Sesión</a>
+  </li>
+
+
+
+<?php else: ?>
+
+      <li class="nav-item ml-auto">
+
+        <a class="nav-link  " href="<?= base_url('user/login');?>">Iniciar Sesión</a>
+
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="#">Iniciar Sesion</a>
+        <a class="nav-link" href="<?= base_url('user/registration');?>">Registrarse</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<?='user/registration'?>">Registrase</a>
-      </li>
+  <?php endif; ?>
     </ul>
   </div>
 
 
 </nav>
 
+
 <div class="content container p-5">
     <?php if(isset($content)){ echo $content;} ?>
+
+    <?php if(isset($reservas)){?>
+
+  <h2 class="col-md-12">Reservas realizadas</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nombre del Recurso</th>
+          <th scope="col">Localidad</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Fecha de Inicio</th>
+          <th scope="col">Fecha Fin</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <?php
+        foreach ($reservas->result() as $reserva){
+          ?>
+
+          <th scope='row'><?= $reserva->nombrer ?></td>
+          <td><?= $reserva->localizacion ?></td>
+          <td><?= $reserva->usuario ?></td>
+          <td><?= $reserva->fecha_inicio ?></td>
+          <td><?= $reserva->fecha_fin?></td>
+          </tr></tbody></td>
+
+    <?php } }else{} ?>
+    </tr></tbody>
+    </table>
+
 </div>
 
     <?php if(isset($js) && !empty($js)): foreach($js as $file): ?>

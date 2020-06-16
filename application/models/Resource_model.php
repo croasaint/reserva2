@@ -23,8 +23,12 @@ public function add_schedule($data){
       'name' => $data['name'],
       'estado' => true,
 ));
- 
 
+
+}
+
+public function delete_schedule($data){
+  $this->db->delete('');
 }
 
 }

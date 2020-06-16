@@ -6,17 +6,21 @@ class Service extends CI_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->model('Service_model');
-
+        $this->load->model('User_model');
         $this->load->helper('global');
 
         $this->data['css'][] = 'bootstrap.min';
         $this->data['css'][] = 'base';
-        
+
         $this->data['js'][] = 'jquery.min';
         $this->data['js'][] = 'popper.min';
         $this->data['js'][] = 'bootstrap.min';
         $this->data['js'][] = 'bootstrap-datepicker.min';
         $this->data['js'][] = 'moment.min';
+        $this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+        $this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+        $this->output->set_header('Pragma: no-cache');
 }
 
 
@@ -30,12 +34,12 @@ class Service extends CI_Controller {
 
   public function recieveData(){
       $this->data = array(
-        'nombre' => $this->input->post('Service_name'),
-        'descripcion' => $this->input->post('Service_description'),
+        'nombre' => $this->input->post('service_name'),
+        'descripcion' => $this->input->post('service_description'),
 
       );
       $this->Service_model->insertService($this->data);
-
+      redirect(base_url(''));
 
   }
 
@@ -59,6 +63,7 @@ class Service extends CI_Controller {
 
 
 public function recieveData_R(){
+
    $this->data = array(
     'id_servicio' => $this->input->post('id_servicio'),
     'nombre' => $this->input->post('nombre'),
@@ -66,9 +71,9 @@ public function recieveData_R(){
     'localizacion' => $this->input->post('localizacion')
 
   );
-
+$redirect = $this->input->post('redirect');
   $this->Service_model->insertResource($this->data);
-  redirect('service/show');
+redirect($redirect);
 
   }
 
@@ -85,7 +90,8 @@ public function recieveData_R(){
      'apellido' => $this->input->post('apellido'),
      'username' => $this->input->post('username'),
      'email' => $this->input->post('correo'),
-     'password' => $this->input->post('password')
+     'password' => $this->input->post('password'),
+     'rol' => $this->input->post('rol')
 
    );
 

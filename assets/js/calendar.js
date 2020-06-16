@@ -17,10 +17,72 @@ function editEvent(event) {
 	$("#event-modal").modal();
 }
 
-function deleteEvent(event) {
-	var dataSource = calendar.getDataSource();
+function deleteEvent() {
+	var event = {
+		id: $('#event-modal input[name="event-index"]').val(),
+		name: $('#event-modal input[name="event-name"]').val(),
+		detail: $('#event-modal input[name="event-detail"]').val(),
+		startDate: $('#event-modal input[name="event-start-date"]').datepicker(
+			"getDate"
+		),
+		endDate: $('#event-modal input[name="event-end-date"]').datepicker(
+			"getDate"
+		)
+	};
+	if (event.name === "") {
+		$('#event-modal input[name="event-name"]+.hidden').removeClass("hidden");
+		return;
+	}
 
-	calendar.setDataSource(dataSource.filter(item => item.id == event.id));
+	if (event.detail === "") {
+		$('#event-modal input[name="event-detail"]+.hidden').removeClass("hidden");
+		return;
+	}
+	var payload = {
+		id_usuario: 1,
+		id_recurso: idRecurso,
+		fecha_inicio: moment(event.startDate).format("YYYY-MMM-DD"),
+		fecha_fin: moment(event.endDate).format("YYYY-MMM-DD"),
+		detalles: event.detail,
+		name: event.name
+	};
+
+	$.ajax({
+		url: "http://localhost/reservas/resource/deletechedule/",
+		type: "DELETE",
+		data: payload,
+		error: function() {
+			alert("Ha ocurrido un error!");
+		},
+		success: async function(data) {
+			var dataSource = await calendar.getDataSource()();
+			if (event.id) {
+				for (var i in dataSource) {
+					if (dataSource[i].id == event.id) {
+						dataSource[i].name = event.name;
+						dataSource[i].detail = event.detail;
+						dataSource[i].startDate = event.startDate;
+						dataSource[i].endDate = event.endDate;
+					}
+				}
+			} else {
+				var newId = 0;
+				for (var i in dataSource) {
+					if (dataSource[i].id > newId) {
+						newId = dataSource[i].id;
+					}
+				}
+
+				newId++;
+				event.id = newId;
+
+				dataSource.push(event);
+			}
+
+			calendar.setDataSource(dataSource);
+			$("#event-modal").modal("hide");
+		}
+	});
 }
 
 function saveEvent() {
@@ -45,7 +107,7 @@ function saveEvent() {
 		return;
 	}
 	var payload = {
-		id_usuario: 2,
+		id_usuario: 1,
 		id_recurso: idRecurso,
 		fecha_inicio: moment(event.startDate).format("YYYY-MMM-DD"),
 		fecha_fin: moment(event.endDate).format("YYYY-MMM-DD"),
@@ -178,5 +240,9 @@ $(function() {
 	calendar.setMinDate(currentDate);
 	$("#save-event").click(function() {
 		saveEvent();
+	});
+
+	$("#delete-event").click(function() {
+		deleteEvent();
 	});
 });
