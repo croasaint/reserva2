@@ -1,5 +1,6 @@
-<h1>Registrar Usuario</h1>
-<div class="User__Show row">
+
+<div class="User row">
+  <h1 class="col-12 pb-3">Registrar Usuario</h1>
 <?php echo form_open('Service/insertUser'); ?>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -32,9 +33,10 @@
 <div class="form-group col-md-12">
   <p>Seleccione un servicio</p>
   <select name="id_servicio" id="id_servicio" class="form-group col-md-8" >
-          <?php foreach($services->result() as $service) { ?>
-                <option value="<?=$service->id?>"><?=$service->nombre?></option>
-          <?php }; ?>
+    <?php if(isset($services)){ ?>
+          <?php foreach($services as $service) { ?>
+                <option value="<?= $service->id?>"><?= $service->nombre?></option>
+          <?php }}; ?>
 
       </select>
       <div class="form-group ">

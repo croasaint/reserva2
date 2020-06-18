@@ -49,16 +49,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Controller_home';
+$route['default_controller'] = 'Home';
 $route['404_override'] = '';
-$route['service/add'] = 'Service/show_add_service';
-$route['service/show/(:num)'] = 'Service/show_service/$1';
-$route['resource/reservation/(:num)'] = 'resource/show_add_resource/$1';
+
+
+$route['servicios'] = 'service';
+$route['servicio/editar/(:num)'] = 'service/edit/$1';
+$route['servicio/(:num)/recursos'] = 'service/show/$1';
+$route['service/(:num)']['post'] = 'service/update/$1';
+$route['service']['post'] = 'service/store';
+$route['service/(:num)']['delete'] = 'service/destroy/$1';
+
+$route['servicio/(:num)/recurso/editar/(:num)'] = 'resource/edit/$1/$2';
+$route['resource/(:num)']['post'] = 'resource/update/$1';
+$route['resource']['post'] = 'resource/store';
+$route['resource/(:num)']['delete'] = 'resource/destroy/$1';
+
+$route['servicio/recurso/reservacion/(:num)'] = 'reservation/index_rewrite/$1';
+$route['reservation/(:num)']['post'] = 'reservation/update/$1';
+$route['reservation']['post'] = 'reservation/store';
+$route['reservation/get_reservations_by_resource_id/(:num)'] = 'reservation/get_reservations_by_resource_id/$1';
+
 $route['user/registration'] = 'Service/addUser';
 $route['user/login'] = 'Signin/loginUser';
 $route['user/destroy'] = 'Signin/logout';
 $route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
-$route['resource/addschedule']['POST'] = 'resource/add_schedule';
-$route['resource/deleteschedule']['DELETE'] = 'resource/delete_schedule';
+
+$route['reservas/(:num)']['delete'] = 'Reservation/destroy/$1';
 
 $route['translate_uri_dashes'] = FALSE;

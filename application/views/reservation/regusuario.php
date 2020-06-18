@@ -1,6 +1,6 @@
 <h2>Formulario de los usuarios</h2>
 
-<?php echo form_open('/reserva/recibirdatos'); ?>
+<?php echo form_open('/reservation/recibirdatos'); ?>
 <?php
 $nombre = array(
   'name' => 'nombre',
@@ -31,7 +31,7 @@ $email = array(
 
 $rol = array(
   'name' => 'rol',
-  'placeholder' => 'Ingresa tú rol'
+  'placeholder' => 'Ingresa tú rol 1 para admin, 2 para usuario'
 );
  ?>
 

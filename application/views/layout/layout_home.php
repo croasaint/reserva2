@@ -11,7 +11,7 @@
 			<link href="<?php echo get_cached_filename('/assets/css/' . $file . '.css'); ?>" rel="stylesheet" />
 	  <?php endforeach; endif; ?>
 
-    <title>Hello, world!</title>
+    <title>Sistema Cabildo</title>
 
     <style media="screen">
       .dropdown-menu.show{
@@ -33,33 +33,26 @@
         <a class="nav-link" href="<?= base_url(''); ?>">Principal <span class="sr-only">(current)</span></a>
       </li>
 
+
 <?php if($this->session->userdata('rol') == '1'):?>
 
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Servicios
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <?php
+      <li class="nav-item">
+        <a class="nav-link" href="<?=base_url('servicios/')?>">Gestión de Servicios</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Servicios
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <?php
+           if(isset($services)):
 
-
-             if(isset($services)){
-
-            foreach ($services->result() as $service){
-              ?>
-              <a class='dropdown-item' href="<?=base_url('service/show/'.$service->id)?>">
-
-
-                <?=$service->nombre?>
-              </a>
-
-            <?php } }else {
-              echo "Error en la aplicacion";
-            } ?>
-            <a class="dropdown-item" href="<?= base_url("service/add ");?>">Añadir Servicio</a>
-          </div>
-        </li>
+          foreach ($services as $service):
+            ?>
+            <a class='dropdown-item' href="<?=base_url('servicio/'.$service->id.'/recursos')?>"><?= $service->nombre; ?></a>
+            <?php endforeach; endif;?>
+          </li>
         <li class="nav-item ml-auto">
           <a class="nav-link"><?php echo $this->session->userdata('username'); ?></a>
         </li>
@@ -116,15 +109,18 @@ else{ echo 'error';}
     <?php if(isset($reservas)){?>
 
   <h2 class="col-md-12">Reservas realizadas</h2>
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped">
       <thead>
         <tr>
           <th scope="col">Nombre del Recurso</th>
+          <th scope="col">Nombre del Servicio</th>
           <th scope="col">Localidad</th>
           <th scope="col">Usuario</th>
           <th scope="col">Fecha de Inicio</th>
           <th scope="col">Fecha Fin</th>
-
+          <?php if($this->session->userdata('rol') == '1'){ ?>
+          <th scope="col">Acciones</th>
+        <?php } ?>
         </tr>
       </thead>
       <tbody>
@@ -134,10 +130,36 @@ else{ echo 'error';}
           ?>
 
           <th scope='row'><?= $reserva->nombrer ?></td>
+          <td><?= $reserva->nombres ?></td>
           <td><?= $reserva->localizacion ?></td>
           <td><?= $reserva->usuario ?></td>
-          <td><?= $reserva->fecha_inicio ?></td>
-          <td><?= $reserva->fecha_fin?></td>
+          <td><?= $reserva->fechai?></td>
+          <td><?= $reserva->fechaf?></td>
+          <?php if($this->session->userdata('rol') == '1'){ ?>
+          <td>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reservModal<?=$reserva->id?>" >Borrar</button>
+            <!-- Modal -->
+            <div class="modal fade" id="reservModal<?=$reserva->id?>" tabindex="-1" role="dialog" aria-labelledby="reservModalLabel<?=$reserva->id?>" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="reservModalLabel<?=$reserva->id?>">Borrar <?=$reserva->nombrer?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Esta accion borrara la reserva <?=$reserva->nombrer?>. Desea continuar?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger remove-reservation" data-id=<?=$reserva->id?>>Borrar</button>
+              </div>
+              </div>
+            </div>
+            </div>
+          </td>
+        <?php } ?>
           </tr></tbody></td>
 
     <?php } }else{} ?>
@@ -145,6 +167,16 @@ else{ echo 'error';}
     </table>
 
 </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+
+  <div class="footer-copyright text-center py-3">Pablo Torres 2º ASIR 2020 <br><br><br>
+    <a href="<?= base_url('');  ?>"><button class="btn btn-secondary text-center py-3" type="button" name="volver">Ir a Principal</button></a>
+  </div>
+
+
+</footer>
 
     <?php if(isset($js) && !empty($js)): foreach($js as $file): ?>
     <script type="text/javascript" src="<?php echo get_cached_filename('assets/js/'.$file.'.js'); ?>"></script>

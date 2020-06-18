@@ -20,7 +20,7 @@
             <form class="form-horizontal">
               <div class="form-group row">
                 <label for="event-name" class="col-sm-4 control-label"
-                  >Titulo</label
+                  >Usuario</label
                 >
                 <div class="col-sm-8">
                   <input
@@ -30,13 +30,13 @@
                     class="form-control"
                     required
                   />
-                  <div class="error hidden">*Titulo es requerido</div>
+                  <div class="error hidden">*Usuario es requerido</div>
 
                 </div>
               </div>
               <div class="form-group row">
                 <label for="event-detail" class="col-sm-4 control-label"
-                  >Detalle</label
+                  >Servicio</label
                 >
                 <div class="col-sm-8">
                   <input
@@ -45,7 +45,7 @@
                     type="text"
                     class="form-control"
                   />
-                  <div class="error hidden">*Detalle es requerido</div>
+                  <div class="error hidden">*Servicio es requerido</div>
                 </div>
               </div>
               <div class="form-group row">
@@ -62,12 +62,14 @@
                       name="event-start-date"
                       type="text"
                       class="form-control"
+                      disabled
                       required
                     />
                     <div class="input-group-prepend input-group-append">
                       <div class="input-group-text">hasta</div>
                     </div>
                     <input
+                      id="event-end-date"
                       name="event-end-date"
                       type="text"
                       class="form-control"
@@ -94,6 +96,7 @@
 
 </div>
 <?='<script>
-  const idRecurso='.$id_resource.'
+  const idRecurso='.$id_resource.';
+  const idUser='.$this->session->userdata('id').';
 </script>'
 ?>

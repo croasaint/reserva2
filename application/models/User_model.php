@@ -21,7 +21,7 @@ if($q->num_rows()>0){
 }
 
 function showReservations(){
-  $query = $this->db->query('select recurso.nombre as "nombrer", recurso.localizacion, reserva.fecha_inicio, reserva.fecha_fin, usuarios.username as "usuario" from reserva inner join usuarios inner join recurso on usuarios.id = reserva.id_usuario and recurso.id = reserva.id_recurso');
+  $query = $this->db->query('select reserva.id, recurso.nombre as "nombrer", servicio.nombre as "nombres", recurso.localizacion,  DATE_FORMAT(reserva.fecha_inicio, "%d-%m-%Y") as "fechai", DATE_FORMAT(reserva.fecha_fin, "%d-%m-%Y") as "fechaf", usuarios.username as "usuario" from reserva inner join usuarios inner join recurso inner join servicio on usuarios.id = reserva.id_usuario and recurso.id = reserva.id_recurso and recurso.id_servicio = servicio.id');
   if($query->num_rows() > 0) return  $query;
   else return false;
 }
