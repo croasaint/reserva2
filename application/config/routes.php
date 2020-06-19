@@ -74,6 +74,6 @@ $route['login'] = 'authentication/login';
 $route['registro'] = 'authentication/register';
 $route['signin']['post'] = 'authentication/signin';
 $route['signup']['post'] = 'authentication/signup';
-$route['signout']['post'] = 'authentication/signout';
+$route['signout'] = 'authentication/signout';
 
 $route['translate_uri_dashes'] = FALSE;

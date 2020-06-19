@@ -1,7 +1,7 @@
 <div class="Service__Show row">
 <h1><?= $service_name?></h1>
 <p><?= $service_description?></p>
-
+<?php if(isset( $this->session->user) && $this->session->user->rol==1):?>
 <h2 class="col-12">Agregar Recurso</h2>
 <?php echo form_open('resource'); ?>
   <div class="form-row">
@@ -26,6 +26,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 <?php echo form_close(); ?>
+<?php endif; ?>
 
 
 
@@ -33,8 +34,7 @@
 
 
 
-
-<table class="table">
+<table class="table table-responsive">
 		<thead class="thead-dark">
 			<tr>
       <th scope="col">#</th>
@@ -51,7 +51,7 @@
 				<td><?=$resource->nombre?></td>
 				<td><?=$resource->descripcion?></td>
         <td><?= $resource->localizacion ?></td>
-				<td> 
+				<td>
 					<a href="<?=base_url('/servicio/recurso/reservacion/'.$resource->id)?>" class="btn btn-info" >Reservar</a>
 					<a href="<?=base_url('servicio/'.$id_service.'/recurso/editar/'.$resource->id)?>" class="btn btn-warning" >Editar</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#resourceModal<?=$resource->id?>" >Borrar</button>
@@ -78,6 +78,6 @@
 				</td>
 			</tr>
 		<?php endforeach; endif; ?>
-		
+
 		</tbody>
 	</table>
