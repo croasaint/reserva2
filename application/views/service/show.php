@@ -1,8 +1,8 @@
-<div class="Service__Show row">
-<h1><?= $service_name?></h1>
-<p><?= $service_description?></p>
+<div class="Service__Show row m-auto">
+<h1 class="col-12"><?= $service_name?></h1>
+<p class="col-2"><?= $service_description?></p>
 <?php if(isset( $this->session->user) && $this->session->user->rol==1):?>
-<h2 class="col-12">Agregar Recurso</h2>
+<h2 class="col-12 pb-5">Agregar Recurso</h2>
 <?php echo form_open('resource'); ?>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -24,7 +24,12 @@
   </div>
 
   </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <div class="pb-5">
+
+
+  <button type="submit" class="btn btn-primary ">Enviar</button>
+
+</div>
 <?php echo form_close(); ?>
 <?php endif; ?>
 
