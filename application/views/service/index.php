@@ -1,5 +1,5 @@
 <div class="service row">
-<h2>Agregar Servicios</h2>
+<h2 class="pb-5 pr-4">Agregar Servicios</h2>
 	<?php echo form_open('service'); ?>
 		<div class="form-row align-items-center">
 			<div class="col-auto">
@@ -10,7 +10,7 @@
 				<label class="sr-only" for="description">Descripcion</label>
 				<input type="text" class="form-control mb-2" id="description" name="description" required placeholder="Descripcion">
 			</div>
-			
+
 			<div class="col-auto">
 				<button type="submit" class="btn btn-primary mb-2">Agregar</button>
 			</div>
@@ -31,7 +31,7 @@
 				<th scope="row"><?=$service->id?></th>
 				<td><?=$service->nombre?></td>
 				<td><?=$service->descripcion?></td>
-				<td> 
+				<td>
 					<a href="<?=base_url('servicio/'.$service->id.'/recursos')?>" class="btn btn-info" >Ver recursos</a>
 					<a href="<?=base_url('servicio/editar/'.$service->id)?>" class="btn btn-warning" >Editar</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#serviceModal<?=$service->id?>" >Borrar</button>
@@ -58,8 +58,8 @@
 				</td>
 			</tr>
 		<?php endforeach; endif; ?>
-		
+
 		</tbody>
 	</table>
-	
+
 </div>
