@@ -5,13 +5,6 @@ class Service_model extends CI_Model{
     $this->load->database();
   }
 
-  function insertService($data){
-    $this->db->insert('servicio',array(
-      'nombre'=>$data['nombre'],
-      'descripcion'=>$data['descripcion'])
-    );
-  }
-
   function get_services(){
     $query = $this->db->get('servicio');
     if($query->num_rows() > 0) return  $query->result();
@@ -49,18 +42,5 @@ class Service_model extends CI_Model{
     else return false;
   }
 
-  function insertUser($data){
-
-    $this->db->insert('usuarios',array(
-      'id_servicio' => $data['id_servicio'],
-      'nombre'=>$data['nombre'],
-      'apellido'=>$data['apellido'],
-      'username'=>$data['username'],
-      'email'=>$data['email'],
-      'password'=>$data['password'],
-      'rol'=>'member'
-  ));
-
-}
 }
  ?>

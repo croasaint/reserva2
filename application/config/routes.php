@@ -67,10 +67,13 @@ $route['resource/(:num)']['delete'] = 'resource/destroy/$1';
 $route['servicio/recurso/reservacion/(:num)'] = 'reservation/index_rewrite/$1';
 $route['reservation/(:num)']['post'] = 'reservation/update/$1';
 $route['reservation']['post'] = 'reservation/store';
+$route['reservation/(:num)']['delete'] = 'reservation/destroy/$1';
 $route['reservation/get_reservations_by_resource_id/(:num)'] = 'reservation/get_reservations_by_resource_id/$1';
 
-$route['user/registration'] = 'service/addUser';
-$route['user/login'] = 'signin/loginUser';
-$route['resource/getschedules/(:num)'] = 'resource/get_schedules/$1';
+$route['login'] = 'authentication/login';
+$route['registro'] = 'authentication/register';
+$route['signin']['post'] = 'authentication/signin';
+$route['signup']['post'] = 'authentication/signup';
+$route['signout']['post'] = 'authentication/signout';
 
 $route['translate_uri_dashes'] = FALSE;

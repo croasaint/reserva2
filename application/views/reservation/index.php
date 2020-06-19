@@ -81,6 +81,11 @@
             </form>
           </div>
           <div class="modal-footer">
+
+          <button type="button" class="btn btn-danger" id="remove-event">
+              Borrar
+            </button>
+
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cancelar
             </button>

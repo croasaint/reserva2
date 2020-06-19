@@ -72,25 +72,4 @@ class Service extends CI_Controller {
     print_r(json_encode($this->Service_model->destroy_service($id))); 
   }
 
-  public function addUser(){
-    $this->data['services'] = $this->Service_model->get_services();
-    $this->data['content'] = $this->load->view('user/registration', $this->data, TRUE );
-    $this->load->view('layout/layout_home', $this->data);
-  }
-
-  public function insertUser(){
-    $this->data = array(
-     'id_servicio' => $this->input->post('id_servicio'),
-     'nombre' => $this->input->post('nombre'),
-     'apellido' => $this->input->post('apellido'),
-     'username' => $this->input->post('username'),
-     'email' => $this->input->post('correo'),
-     'password' => $this->input->post('password')
-
-   );
-
-   $this->Service_model->insertUser($this->data);
-   redirect('user/registration');
-
-  }
 }

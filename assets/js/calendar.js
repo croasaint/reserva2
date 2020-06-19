@@ -22,11 +22,20 @@ function editEvent(event) {
 	$("#event-modal").modal();
 }
 
-function deleteEvent(event) {
-	var dataSource = calendar.getDataSource();
+$("#remove-event").click(function() {
+	var id = $('#event-modal input[name="event-index"]').val();
 
-	calendar.setDataSource(dataSource.filter(item => item.id == event.id));
-}
+	$.ajax({
+		url: "http://localhost/reservas/reservation/" + id,
+		type: "DELETE",
+		error: function() {
+			alert("Ha ocurrido un error en la reserva!");
+		},
+		success: async function() {
+			window.location.reload();
+		}
+	});
+});
 
 function saveEvent() {
 	var event = {
@@ -88,10 +97,6 @@ $(function() {
 			{
 				text: "Update",
 				click: editEvent
-			},
-			{
-				text: "Delete",
-				click: deleteEvent
 			}
 		],
 		selectRange: function(e) {

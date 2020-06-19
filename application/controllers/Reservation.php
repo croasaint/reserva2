@@ -59,7 +59,9 @@ class Reservation extends CI_Controller {
     $this->Reservation_model->update_reservation($data,$id);
     return true;  
   }
-
+  public function destroy($id){
+    print_r(json_encode($this->Reservation_model->destroy_reservation($id))); 
+  }
   public function get_reservations_by_resource_id($id){
     echo json_encode($this->Reservation_model->get_reservations_by_resource_id($id));
     

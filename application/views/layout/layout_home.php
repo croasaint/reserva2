@@ -23,18 +23,18 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Cabildo</a>
+  <a class="navbar-brand" href="<?=base_url('/')?>">Cabildo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Calendario <span class="sr-only">(current)</span></a>
-      </li>
+    <?php if(isset( $this->session->user) && $this->session->user->rol==1 ):?>   
       <li class="nav-item">
         <a class="nav-link" href="<?=base_url('servicios/')?>">Servicios</a>
       </li>
+    <?php endif; ?>
+    <?php if((!isset( $this->session->user) || $this->session->user->rol!=1) ):?> 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Servicios
@@ -57,13 +57,24 @@
           <a class="dropdown-item" href="<?= "service/add "?>">Añadir Servicio</a>
         </div>
       </li>
+      <?php endif; ?>
+      <?php if(!isset( $this->session->user)):?>     
       <li class="nav-item">
-        <a class="nav-link" href="#">Iniciar Sesion</a>
+        <a class="nav-link" href="<?=base_url('/login')?>">Iniciar Sesion</a>
       </li>
+      <?php endif; ?>
+      
+      <?php if(!isset( $this->session->user)):?>   
+      <li class="nav-item">
+        <a class="nav-link" href="<?=base_url('/registro')?>">Registrase</a>
+      </li>
+      <?php endif; ?>
 
+      <?php if(isset( $this->session->user)):?>   
       <li class="nav-item">
-        <a class="nav-link" href="<?='user/registration'?>">Registrase</a>
+        <a class="nav-link" href="">Salir</a>
       </li>
+      <?php endif; ?>
     </ul>
   </div>
 

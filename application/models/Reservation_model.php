@@ -29,8 +29,12 @@ class Reservation_model extends CI_Model{
     ), "id = ".$id);
   }
 
-  function get_reservations_by_resource_id($id){
-  
+  function destroy_reservation($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('reserva');
+  }
+
+  function get_reservations_by_resource_id($id){  
     $query = $this->db->query('select * from reserva where fecha_fin >= curdate() and estado = 1 and id_recurso ='.$id);
     if($query->num_rows() > 0) return  $query->result();
     else return [];
