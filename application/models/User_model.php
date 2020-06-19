@@ -21,17 +21,17 @@ class User_model extends CI_Model{
   else return [];
 }
 
-//function showUserService(){
+function showUserService($data){
 
-//$userid =  $this->session->user->id;
-//$this->db->select('servicio.nombre, usuarios.id_servicio');
-//$this->db->from('servicio');
-//$this->db->join('usuarios','usuarios.id_servicio = servicio.id');
-//$this->db->where('usuarios.id = "'.$userid.'"');
-//$query = $this->db->get();
-  //if($query->num_rows() > 0) return $query;
-  //else return false;
-//}
+
+$this->db->select('servicio.nombre, usuarios.id_servicio');
+$this->db->from('servicio');
+$this->db->join('usuarios','usuarios.id_servicio = servicio.id');
+$this->db->where('usuarios.id = "'.$data.'"');
+$query = $this->db->get();
+  if($query->num_rows() > 0) return $query->result();
+  else return [];
+}
 
 }
  ?>

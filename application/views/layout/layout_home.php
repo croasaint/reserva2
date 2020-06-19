@@ -1,4 +1,4 @@
-<?php print_r($this->session->user)  ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,12 +30,11 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav flex-row w-100">
     <?php if(isset( $this->session->user) && $this->session->user->rol==1 ) :?>
-      <li class="nav-item">
-        <a class="nav-link" href="<?=base_url('servicios/')?>">Servicios</a>
+      <li class="nav-item pr-4">
+        <a class="nav-link" href="<?=base_url('servicios/')?>">Gestionar Servicios</a>
       </li>
-    <?php endif; ?>
-    <?php if((!isset( $this->session->user) || $this->session->user->rol==2) ):?>
-      <li class="nav-item dropdown">
+
+      <li class="nav-item dropdown pr-2">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Servicios
         </a>
@@ -52,11 +51,26 @@
             </a>
 
           <?php } }else {
-            echo "Error en la aplicacion";
+
           } ?>
 
         </div>
       </li>
+    <?php endif; ?>
+    <?php if((!isset( $this->session->user) || $this->session->user->rol==2) ):?>
+
+
+      <li class="nav-item">
+    <?php  if(isset($userService)){
+
+      foreach ($userService as $usersr){
+    ?>
+    <a class="nav-link " href="<?=base_url('service/show/'.$usersr->id_servicio)?>"><?= $usersr->nombre ?></a>
+  </li>
+<?php
+}}
+else{ }
+  ?>
       <?php endif; ?>
       <?php if(!isset( $this->session->user)):?>
       <li class="nav-item ml-auto pr-2">
@@ -72,7 +86,7 @@
 
       <?php if(isset( $this->session->user)):?>
         <li class="nav-item ml-auto pr-2">
-          <a class="nav-link"><?= $this->session->user->username ?></a>
+          <p class="nav-link"><?= $this->session->user->username ?></p>
         </li>
 
       <li class="nav-item">
@@ -85,7 +99,7 @@
 
 </nav>
 
-<div class="content container p-5">
+<div class="content container p-5 ">
     <?php if(isset($content)){ echo $content;} ?>
 
     <?php if(isset($reservas)){?>

@@ -22,8 +22,10 @@ class Home extends CI_Controller {
 
   public function index(){
     $this->data['reservas'] = $this->User_model->showReservations();
-  //$this->data['userService'] = $this->User_model->showUserService();
-
+    if(isset($this->session->user)){
+    $data = $this->session->user->id;
+  $this->data['userService'] = $this->User_model->showUserService($data);
+}
     $this->data['services'] = $this->Service_model->get_services();
     $this->load->view('layout/layout_home', $this->data);
 

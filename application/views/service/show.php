@@ -52,8 +52,16 @@
 				<td><?=$resource->descripcion?></td>
         <td><?= $resource->localizacion ?></td>
 				<td>
-					<a href="<?=base_url('/servicio/recurso/reservacion/'.$resource->id)?>" class="btn btn-info" >Reservar</a>
-					<a href="<?=base_url('servicio/'.$id_service.'/recurso/editar/'.$resource->id)?>" class="btn btn-warning" >Editar</a>
+          <?php if(isset( $this->session->user)):?>
+
+          <a href="<?=base_url('/servicio/recurso/reservacion/'.$resource->id)?>" class="btn btn-info" >Reservar</a>
+
+          <?php endif; ?>
+
+          <?php if(isset( $this->session->user) && $this->session->user->rol==1):?>
+
+
+          <a href="<?=base_url('servicio/'.$id_service.'/recurso/editar/'.$resource->id)?>" class="btn btn-warning" >Editar</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#resourceModal<?=$resource->id?>" >Borrar</button>
 					<!-- Modal -->
 					<div class="modal fade" id="resourceModal<?=$resource->id?>" tabindex="-1" role="dialog" aria-labelledby="resourceModalLabel<?=$resource->id?>" aria-hidden="true">
@@ -75,6 +83,7 @@
 						</div>
 					</div>
 					</div>
+        <?php endif; ?>
 				</td>
 			</tr>
 		<?php endforeach; endif; ?>

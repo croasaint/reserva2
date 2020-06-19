@@ -36,7 +36,7 @@
               </div>
               <div class="form-group row">
                 <label for="event-detail" class="col-sm-4 control-label"
-                  >Detalle</label
+                  >Servicio</label
                 >
                 <div class="col-sm-8">
                   <input
@@ -45,7 +45,7 @@
                     type="text"
                     class="form-control"
                   />
-                  <div class="error hidden">*Detalle es requerido</div>
+                  <div class="error hidden">*Servicio es requerido</div>
                 </div>
               </div>
               <div class="form-group row">
