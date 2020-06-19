@@ -22,15 +22,15 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="<?=base_url('/')?>">Cabildo</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand pb-4" href="<?=base_url('/')?>">Cabildo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav flex-row w-100">
     <?php if(isset( $this->session->user) && $this->session->user->rol==1 ) :?>
-      <li class="nav-item pr-4">
+      <li class="nav-item pr-3">
         <a class="nav-link" href="<?=base_url('servicios/')?>">Gestionar Servicios</a>
       </li>
 
