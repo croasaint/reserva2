@@ -17,8 +17,8 @@ class User_model extends CI_Model{
 
   function showReservations(){
   $query = $this->db->query('select reserva.id, recurso.nombre as "nombrer", servicio.nombre as "nombres", recurso.localizacion,  DATE_FORMAT(reserva.fecha_inicio, "%d-%m-%Y") as "fechai", DATE_FORMAT(reserva.fecha_fin, "%d-%m-%Y") as "fechaf", usuarios.username as "usuario" from reserva inner join usuarios inner join recurso inner join servicio on usuarios.id = reserva.id_usuario and recurso.id = reserva.id_recurso and recurso.id_servicio = servicio.id');
-  if($query->num_rows() > 0) return  $query;
-  else return false;
+  if($query->num_rows() > 0) return  $query->result();
+  else return [];
 }
 
 //function showUserService(){

@@ -34,7 +34,7 @@
         <a class="nav-link" href="<?=base_url('servicios/')?>">Servicios</a>
       </li>
     <?php endif; ?>
-    <?php if((isset( $this->session->user) || $this->session->user->rol=2) ):?>
+    <?php if((!isset( $this->session->user) || $this->session->user->rol==2) ):?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Servicios
@@ -108,7 +108,8 @@
       <tbody>
         <tr>
         <?php
-        foreach ($reservas->result() as $reserva){
+
+        foreach ($reservas as $reserva){
           ?>
 
           <th scope='row'><?= $reserva->nombrer ?></td>
