@@ -49,7 +49,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							Esta accion borrara todos los recursos relacionados con el servicio <?=$service->nombre?>. Desea continuar?
+							Esta accion borrara todos los usuarios y recursos relacionados con el servicio <?=$service->nombre?>. Desea continuar?
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

@@ -10,7 +10,7 @@
 			<link href="<?php echo get_cached_filename('/assets/css/' . $file . '.css'); ?>" rel="stylesheet" />
 	  <?php endforeach; endif; ?>
     <!----- Fin External Style Sheets ------------->
-    
+
     <title>Sistema Cabildo</title>
 
     <style media="screen">
@@ -25,15 +25,15 @@
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand " href="<?=base_url('/')?>">Cabildo</a>
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav flex-row w-100">
-      
-      
+
+
             <?php if( $rol=='admin' ) :?>
               <li class="nav-item pr-3">
                   <a class="nav-link" href="<?=base_url('servicios/')?>">Gestionar Servicios</a>
@@ -49,8 +49,8 @@
                   <a class="nav-link" href="<?=base_url('servicio/'.$services[$key]->id.'/recursos')?>"><?=$services[$key]->nombre?></a>
               </li>
             <?php endif; ?>
-            
-            
+
+
             <?php if( $rol=='visitor' ) :?>
               <li class="nav-item dropdown pr-2">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,8 +65,8 @@
                 </div>
               </li>
             <?php endif; ?>
-          
-            
+
+
             <?php if($rol=='visitor'):?>
             <li class="nav-item ml-auto pr-2">
               <a class="nav-link" href="<?=base_url('/login')?>">Iniciar Sesión</a>
@@ -80,28 +80,28 @@
             </li>
             <?php endif; ?>
 
-            
+
             <?php if($rol!='visitor'):?>
               <li style="display: flex;justify-content: center;align-items: center;" class="nav-item ml-auto pr-2">
                 <p style="color:white;margin: 0; font-weight: bold;"><?= $this->session->user->username ?></p>
               </li>
 
-              
+
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('/signout');  ?>">Salir</a>
               </li>
-            <?php endif; ?>          
-          
+            <?php endif; ?>
+
           </ul>
         </div>
       </nav>
-      
-      <div class="content container p-5 ">        
+
+      <div class="content container p-5 ">
         <?php if(isset($content)):?>
           <?=$content?>
         <?php endif; ?>
-     
-          
+
+
         <?php if(isset($reservas)):?>
           <h2 class="col-md-12">Reservas realizadas</h2>
           <table class="table table-responsive table-striped">
@@ -119,10 +119,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <?php foreach ($reservas as $reserva): ?>
 
-                  <th scope='row'><?= $reserva->nombrer ?></td>
+                <?php foreach ($reservas as $reserva): ?>
+                  <tr>
+                  <td scope='row'><?= $reserva->nombrer ?></td>
                   <td><?= $reserva->nombres ?></td>
                   <td><?= $reserva->localizacion ?></td>
                   <td><?= $reserva->usuario ?></td>
@@ -153,8 +153,9 @@
                       </div>
                     </td>
                   <?php endif; ?>
+                </tr>
                 <?php endforeach; ?>
-              </tr>
+
             </tbody>
           </table>
         <?php endif; ?>
