@@ -22,7 +22,9 @@
 				<th scope="col">#</th>
 				<th scope="col">Nombre</th>
 				<th scope="col">Descripcion</th>
+				<?php if(isset( $this->session->user) && $this->session->user->rol==1):?>
 				<th scope="col">Acciones</th>
+			<?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,6 +34,7 @@
 				<td><?=$service->nombre?></td>
 				<td><?=$service->descripcion?></td>
 				<td>
+					<?php if(isset( $this->session->user) && $this->session->user->rol==1):?>
 					<a href="<?=base_url('servicio/'.$service->id.'/recursos')?>" class="btn btn-info" >Ver recursos</a>
 					<a href="<?=base_url('servicio/editar/'.$service->id)?>" class="btn btn-warning" >Editar</a>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#serviceModal<?=$service->id?>" >Borrar</button>
@@ -57,6 +60,7 @@
 					</div>
 				</td>
 			</tr>
+		<?php endif; ?>
 		<?php endforeach; endif; ?>
 
 		</tbody>

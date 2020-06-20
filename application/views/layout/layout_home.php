@@ -114,9 +114,10 @@ else{ }
           <th scope="col">Usuario</th>
           <th scope="col">Fecha de Inicio</th>
           <th scope="col">Fecha Fin</th>
-          <?php if($this->session->userdata('rol') == '1'){ ?>
+          <?php if(isset( $this->session->user) && $this->session->user->rol==1 ) :?>
           <th scope="col">Acciones</th>
-        <?php } ?>
+        <?php endif; ?>
+
         </tr>
       </thead>
       <tbody>
@@ -132,11 +133,11 @@ else{ }
           <td><?= $reserva->usuario ?></td>
           <td><?= $reserva->fechai?></td>
           <td><?= $reserva->fechaf?></td>
-          <?php if($this->session->userdata('rol') == '1'){ ?>
+          <?php if(isset( $this->session->user) && $this->session->user->rol==1 ) :?>
           <td>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reservModal<?=$reserva->id?>" >Borrar</button>
             <!-- Modal -->
-            <div class="modal fade" id="reservModal<?=$reserva->id?>" tabindex="-1" role="dialog" aria-labelledby="reservModalLabel<?=$reserva->id?>" aria-hidden="true">
+            <div class="modal fade" id="reservModal<?=$reserva->id?>" tabindex="-1" role="dialog" aria-labelledby="reservModalLabel<?= $reserva->id?>" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header">
@@ -150,13 +151,13 @@ else{ }
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger remove-reservation" data-id=<?=$reserva->id?>>Borrar</button>
+                <button type="button" class="btn btn-danger remove-reservation" data-id="<?=$reserva->id?>">Borrar</button>
               </div>
               </div>
             </div>
             </div>
           </td>
-        <?php } ?>
+        <?php endif; ?>
       </td></tr></tbody>
 
     <?php } }else{} ?>
