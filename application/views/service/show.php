@@ -38,7 +38,9 @@
 
 
 
-
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+</div>
 <table class="table table-responsive">
 		<thead class="thead-dark">
 			<tr>

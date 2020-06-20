@@ -9,6 +9,7 @@ class Home extends MY_Controller {
 
 
   public function index(){
+    $this->data['js'][] = 'reservation';
     $this->data['reservas'] = $this->User_model->showReservations();
     if(isset($this->session->user)){
     $data = $this->session->user->id;
