@@ -36,7 +36,7 @@
               </div>
               <div class="form-group row">
                 <label for="event-detail" class="col-sm-4 control-label"
-                  >Servicio</label
+                  >Detalles</label
                 >
                 <div class="col-sm-8">
                   <input
@@ -45,7 +45,7 @@
                     type="text"
                     class="form-control"
                   />
-                  <div class="error hidden">*Servicio es requerido</div>
+                  <div class="error hidden">*Detalles es requerido</div>
                 </div>
               </div>
               <div class="form-group row">
@@ -81,16 +81,16 @@
             </form>
           </div>
           <div class="modal-footer">
-
-          <button type="button" class="btn btn-danger" id="remove-event">
-              Borrar
-            </button>
-
+            <?php if( $rol=='admin' ) :?>
+              <button type="button" class="btn btn-danger" id="remove-event">
+                Borrar
+              </button>
+            <?php endif; ?>
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cancelar
             </button>
             <button type="button" class="btn btn-primary" id="save-event">
-              Reservar
+            <?= ( $rol=='admin' ) ? 'Editar' : 'Reservar' ?> 
             </button>
           </div>
         </div>

@@ -1,5 +1,4 @@
 let calendar = null;
-console.log(idUsuario, idRecurso, baseUrl);
 function editEvent(event) {
 	$('#event-modal input[name="event-index"]').val(event ? event.id : "");
 	$('#event-modal input[name="event-name"]').val(event ? event.name : "");
@@ -19,7 +18,16 @@ function editEvent(event) {
 
 	$('#event-modal input[name="event-name"]+.error').addClass("hidden");
 	$('#event-modal input[name="event-detail"]+.error').addClass("hidden");
-	$("#event-modal").modal();
+	var id = $('#event-modal input[name="event-index"]').val();
+	if (rol === "admin") {
+		if (id !== "") {
+			$("#event-modal").modal();
+		}
+	} else if (rol == "member") {
+		if (id === "") {
+			$("#event-modal").modal();
+		}
+	}
 }
 
 $("#remove-event").click(function() {
@@ -124,7 +132,10 @@ $(function() {
 				for (var i in e.events) {
 					content +=
 						'<div class="event-tooltip-content">' +
-						'<div class="event-detail">' +
+						'<div class="event-tooltip-name"> <strong>Titulo:</strong> ' +
+						e.events[i].name +
+						"</div>" +
+						'<div class="event-tooltip-detail"> <strong>Detalle:</strong> ' +
 						e.events[i].detail +
 						"</div>" +
 						"</div>";

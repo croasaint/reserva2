@@ -41,13 +41,15 @@ class Authentication extends MY_Controller  {
   public function signin(){
     $username = $this->input->post('username');
     $password = $this->input->post('password');
+    echo $username;
+    echo $password;
     $user=$this->User_model->get_user($username);
-
+    print_r(json_encode($user));
     if( password_verify($password,$user->password) ){
         $this->session->user=$user;
         redirect('/');
     }else{
-      echo 'no entro';
+      redirect('/registro');
     }
 
   }

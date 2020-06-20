@@ -37,8 +37,6 @@ class Reservation extends MY_Controller {
 
   public function update($id){
     $data = array(
-      'id_usuario' => $this->input->post('id_usuario'),
-      'id_recurso' => $this->input->post('id_recurso'),
       'fecha_inicio' => $this->input->post('fecha_inicio'),
       'fecha_fin' => $this->input->post('fecha_fin'),
       'detalles' => $this->input->post('detalles'),

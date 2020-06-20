@@ -19,8 +19,6 @@ class Reservation_model extends CI_Model{
 
   function update_reservation($data,$id){
     $this->db->update('reserva', array(
-      'id_usuario' => $data['id_usuario'],
-        'id_recurso' => $data['id_recurso'],
         'fecha_inicio' => date('Y-m-d',strtotime($data['fecha_inicio'])),
         'fecha_fin' => date('Y-m-d',strtotime($data['fecha_fin'])),
         'detalles' => $data['detalles'],

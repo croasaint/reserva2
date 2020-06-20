@@ -7,7 +7,6 @@ class MY_Controller extends CI_Controller {
 
     $this->data['css'][] = 'bootstrap.min';
     $this->data['css'][] = 'base';
-    $this->data['js'][] = 'global-variables.js';
     $this->data['js'][] = 'jquery.min';
     $this->data['js'][] = 'popper.min';
     $this->data['js'][] = 'bootstrap.min';

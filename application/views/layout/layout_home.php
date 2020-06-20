@@ -23,7 +23,6 @@
 
 
   <body>
-      <?=$rol?>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand " href="<?=base_url('/')?>">Cabildo</a>
         
@@ -40,9 +39,19 @@
                   <a class="nav-link" href="<?=base_url('servicios/')?>">Gestionar Servicios</a>
               </li>
             <?php endif; ?>
+
+
+            <?php if( $rol=='member' ) :?>
+              <?php
+                $key = array_search($this->session->user->id_servicio, array_column($services, 'id'));
+              ?>
+              <li class="nav-item pr-3">
+                  <a class="nav-link" href="<?=base_url('servicio/'.$services[$key]->id.'/recursos')?>"><?=$services[$key]->nombre?></a>
+              </li>
+            <?php endif; ?>
             
             
-            <?php if( $rol=='visitor' || $rol=='member' ) :?>
+            <?php if( $rol=='visitor' ) :?>
               <li class="nav-item dropdown pr-2">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Servicios
@@ -73,8 +82,8 @@
 
             
             <?php if($rol!='visitor'):?>
-              <li class="nav-item ml-auto pr-2">
-                <p class="nav-link"><?= $this->session->user->username ?></p>
+              <li style="display: flex;justify-content: center;align-items: center;" class="nav-item ml-auto pr-2">
+                <p style="color:white;margin: 0; font-weight: bold;"><?= $this->session->user->username ?></p>
               </li>
 
               
@@ -157,7 +166,10 @@
 
 
       <!------ Inicio Scripts ------------->
-      <script>var baseUrl = '<?php echo base_url() ?>';</script>
+      <script>
+        var baseUrl = '<?= base_url() ?>';
+        var rol='<?= $rol ?>'
+      </script>
       <?php if(isset($js) && !empty($js)): foreach($js as $file): ?>
         <script type="text/javascript" src="<?php echo get_cached_filename('assets/js/'.$file.'.js'); ?>"></script>
       <?php endforeach; endif; ?>

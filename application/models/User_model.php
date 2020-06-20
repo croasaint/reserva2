@@ -12,7 +12,7 @@ class User_model extends CI_Model{
   function get_user($username){
     $query = $this->db->query('select * from usuarios where username = "'.$username.'"');
     if($query->num_rows() > 0) return  $query->result()[0];
-    else return false;
+    else return [];
   }
 
   function showReservations(){
