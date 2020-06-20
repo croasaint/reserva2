@@ -1,22 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends MY_Controller {
     function __construct(){
         parent::__construct();
-        $this->load->model('Service_model');
         $this->load->model('User_model');
-        $this->load->helper('global');
-
-        $this->data['css'][] = 'bootstrap.min';
-        $this->data['css'][] = 'base';
-
-        $this->data['js'][] = 'jquery.min';
-        $this->data['js'][] = 'popper.min';
-        $this->data['js'][] = 'bootstrap.min';
-        $this->data['js'][] = 'bootstrap-datepicker.min';
-        $this->data['js'][] = 'moment.min';
-
     }
 
 

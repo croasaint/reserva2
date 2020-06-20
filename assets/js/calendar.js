@@ -1,5 +1,5 @@
 let calendar = null;
-
+console.log(idUsuario, idRecurso, baseUrl);
 function editEvent(event) {
 	$('#event-modal input[name="event-index"]').val(event ? event.id : "");
 	$('#event-modal input[name="event-name"]').val(event ? event.name : "");
@@ -26,7 +26,7 @@ $("#remove-event").click(function() {
 	var id = $('#event-modal input[name="event-index"]').val();
 
 	$.ajax({
-		url: "http://localhost/reservas/reservation/" + id,
+		url: baseUrl + "/reservation/" + id,
 		type: "DELETE",
 		error: function() {
 			alert("Ha ocurrido un error en la reserva!");
@@ -59,16 +59,16 @@ function saveEvent() {
 		return;
 	}
 	var payload = {
-		id_usuario: 2,
+		id_usuario: idUsuario,
 		id_recurso: idRecurso,
 		fecha_inicio: moment(event.startDate).format("YYYY-MMM-DD"),
 		fecha_fin: moment(event.endDate).format("YYYY-MMM-DD"),
 		detalles: event.detail,
 		name: event.name
 	};
-	var url = "http://localhost/reservas/reservation/";
+	var url = baseUrl + "/reservation/";
 	if (event.id) {
-		url = "http://localhost/reservas/reservation/" + event.id;
+		url = url + event.id;
 	}
 
 	$.ajax({
@@ -152,7 +152,7 @@ $(function() {
 		dataSource: async function() {
 			// Load data from GitHub API
 			return fetch(
-				`http://localhost/reservas/reservation/get_reservations_by_resource_id/${idRecurso}`
+				`${baseUrl}reservation/get_reservations_by_resource_id/${idRecurso}`
 			)
 				.then(result => result.json())
 				.then(results => {

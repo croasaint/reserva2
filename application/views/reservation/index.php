@@ -101,5 +101,6 @@
 </div>
 <?='<script>
   const idRecurso='.$id_resource.'
+  const idUsuario='.$this->session->user->id.'
 </script>'
 ?>
