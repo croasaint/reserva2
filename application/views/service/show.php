@@ -46,7 +46,12 @@
       <th scope="col">Nombre del Recurso</th>
       <th scope="col">Descripción</th>
       <th scope="col">Localización</th>
+
+      <?php if(isset( $this->session->user)):?>
+
       <th scope="col">Acciones</th>
+
+      <?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>

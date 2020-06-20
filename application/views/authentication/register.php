@@ -1,4 +1,5 @@
 <div class="authorization row">
+  <h1 class="col-12 pb-4">Registro de Usuarios</h1>
     <?php echo form_open('signup/'); ?>
     <div class="form-row align-items-center">
         <div class="col-12">

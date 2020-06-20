@@ -164,7 +164,7 @@ else{ }
     </table>
 </div>
 
-<footer class="page-footer font-small blue pt-5"  style='background-color: #e3f2fd;'>
+<footer class="page-footer font-small blue pt-5"  >
 
 
   <div class="footer-copyright text-center ">Pablo Torres 2º ASIR 2020 <br><br><br>

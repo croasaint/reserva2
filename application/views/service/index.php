@@ -1,7 +1,7 @@
 <div class="service row">
 <h2 class="pb-5 pr-4">Agregar Servicios</h2>
 	<?php echo form_open('service'); ?>
-		<div class="form-row align-items-center">
+		<div class="form-row ">
 			<div class="col-auto">
 				<label class="sr-only" for="name">Nombre</label>
 				<input type="text" class="form-control mb-2" id="name" name="name" required placeholder="Nombre">
