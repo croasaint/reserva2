@@ -100,36 +100,7 @@
 							</tr>
 						<?php endforeach; endif; ?>
 					</tbody>
-				</table>
-
-
-
-
-		
-								
-									
-										
-										<!-- Modal -->
-										<div class="modal fade" id="resourceModal<?=$resource->id?>" tabindex="-1" role="dialog" aria-labelledby="resourceModalLabel<?=$resource->id?>" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="resourceModalLabel<?=$resource->id?>">Borrar <?=$resource->nombre?></h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													Esta accion borrara todas las reservas relacionadas con el recurso <?=$resource->nombre?>. Desea continuar?
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-													<button type="button" class="btn btn-danger remove-resource" data-id=<?=$resource->id?>>Borrar</button>
-												</div>
-												</div>
-											</div>
-										</div>
-								
+				</table>								
 			</div>
 			
 		</div>

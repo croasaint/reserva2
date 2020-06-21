@@ -6,7 +6,8 @@ $(document).ready(function() {
 			paginate: {
 				previous: "Anterior",
 				next: "Siguiente"
-			}
+			},
+			emptyTable: "No hay datos disponibles"
 		}
 	});
 });
