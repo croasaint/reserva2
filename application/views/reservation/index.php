@@ -1,5 +1,19 @@
-<div class="reservation">
-  <div id="calendar"></div>
+<div class="reservation ">
+<div class="jumbotron">
+        <div class="container">
+          <h1 class="display-5"><?=$resource_name?></h1>
+		      <p><?=$resource_description?>. <?=$resource_localization?></p>
+          <p>En esta seccion podra ver y realizar las reservas para el recurso <strong><?=$resource_name?></strong></p>         
+        </div>
+	</div>
+  <div class="container">
+    <div class="row">
+     <div class="col-12">
+        <div id="calendar"></div>
+     </div>
+    </div>
+  </div>
+  
 
     <div class="modal fade" id="event-modal">
       <div class="modal-dialog">

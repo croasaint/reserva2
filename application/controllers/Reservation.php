@@ -16,6 +16,10 @@ class Reservation extends MY_Controller {
     $this->data['js'][] = 'js-year-calendar.min';
     $this->data['js'][] = 'calendar';
     $this->data['id_resource']=$id;
+    $resource = $this->Resource_model->get_resource($id)[0];
+    $this->data['resource_name']=$resource->nombre;
+    $this->data['resource_description']=$resource->descripcion;
+    $this->data['resource_localization']=$resource->localizacion;
     $this->data['services'] = $this->Service_model->get_services();
     $this->data['content'] = $this->load->view("reservation/index",  $this->data ,TRUE );
     $this->load->view("layout/layout_home", $this->data);
