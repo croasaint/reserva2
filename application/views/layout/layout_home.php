@@ -39,6 +39,12 @@
               </li>
             <?php endif; ?>
 
+            <?php if( $rol=='admin' ) :?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?=base_url('usuarios/')?>">Gestionar Usuarios</a>
+              </li>
+            <?php endif; ?>
+
             <?php if( $rol=='member' ) :?>
               <?php
                 $key = array_search($this->session->user->id_servicio, array_column($services, 'id'));

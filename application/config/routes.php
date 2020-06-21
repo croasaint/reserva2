@@ -70,6 +70,11 @@ $route['reservation']['post'] = 'reservation/store';
 $route['reservation/(:num)']['delete'] = 'reservation/destroy/$1';
 $route['reservation/get_reservations_by_resource_id/(:num)'] = 'reservation/get_reservations_by_resource_id/$1';
 
+$route['usuarios'] = 'user';
+$route['user']['post'] = 'user/store';
+$route['user/(:num)']['delete'] = 'user/destroy/$1';
+$route['user/(:num)']['post'] = 'user/update/$1';
+
 $route['login'] = 'authentication/login';
 $route['registro'] = 'authentication/register';
 $route['signin']['post'] = 'authentication/signin';

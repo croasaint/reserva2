@@ -5,6 +5,21 @@ class User_model extends CI_Model{
     $this->load->database();
   }
 
+  function get_users(){
+    $query = $this->db->get('usuarios');
+    if($query->num_rows() > 0) return  $query->result();
+    else return false;
+  }
+
+  function destroy_user($id){
+    $this->db->where('id', $id);
+    return $this->db->delete('usuarios');
+  }
+
+  function update_user($data,$id){
+    $this->db->update('usuarios', $data, "id = ".$id);
+  }
+
   function store_user($data){
     return $this->db->insert('usuarios',$data);
   }
