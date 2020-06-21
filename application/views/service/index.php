@@ -2,7 +2,7 @@
 	<div class="jumbotron">
         <div class="container">
           <h1 class="display-5">Servicios</h1>
-		  <p>A continuacion se listan los servicios disponibles del sistema cabildo</p>
+		  <p>A continuacionn se listan los servicios disponibles del sistema cabildo</p>
 		  <?php if($rol=='admin'):?>
 			<p><a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#exampleModal" href="#" role="button">agregar servicio</a></p>
 		  <?php endif; ?>          
