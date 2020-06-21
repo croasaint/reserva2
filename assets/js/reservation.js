@@ -1,7 +1,7 @@
 $(".remove-reservation").click(function() {
 	var idService = $(this).data("id");
 	$.ajax({
-		url: "http://localhost/reservas/reservation/" + idService,
+		url: baseUrl + "reservation/" + idService,
 		type: "DELETE",
 		error: function() {
 			alert("Ha ocurrido un error");

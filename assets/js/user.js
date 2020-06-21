@@ -1,7 +1,7 @@
 $(".remove-user").click(function() {
 	var idUser = $(this).data("id");
 	$.ajax({
-		url: "http://localhost/reservas/user/" + idUser,
+		url: baseUrl + "user/" + idUser,
 		type: "DELETE",
 		error: function() {
 			alert("Ha ocurrido un error");
